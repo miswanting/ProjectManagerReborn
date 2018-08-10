@@ -1,0 +1,19 @@
+{
+  "name": "project-manager",
+  "version": "0.1.0",
+  "description": "A new start of ProjectManager.",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miswanting/ProjectManagerReborn.git"
+  },
+  "author": "Miswanting",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/miswanting/ProjectManagerReborn/issues"
+  },
+  "homepage": "https://github.com/miswanting/ProjectManagerReborn#readme"
+}
