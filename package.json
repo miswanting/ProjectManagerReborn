@@ -2,7 +2,7 @@
   "name": "project-manager",
   "version": "0.1.0",
   "description": "A new start of ProjectManager.",
-  "main": "src/main.js",
+  "main": "src/dist/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +15,25 @@
   "bugs": {
     "url": "https://github.com/miswanting/ProjectManagerReborn/issues"
   },
-  "homepage": "https://github.com/miswanting/ProjectManagerReborn#readme"
+  "homepage": "https://github.com/miswanting/ProjectManagerReborn#readme",
+  "devDependencies": {
+    "@types/bootstrap": "latest",
+    "@types/electron-devtools-installer": "latest",
+    "@types/jquery": "latest",
+    "@types/popper.js": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "awesome-typescript-loader": "latest",
+    "bootstrap": "latest",
+    "electron": "latest",
+    "electron-devtools-installer": "latest",
+    "jquery": "latest",
+    "popper.js": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "source-map-loader": "latest",
+    "typescript": "latest",
+    "webpack": "latest",
+    "webpack-cli": "latest"
+  }
 }
