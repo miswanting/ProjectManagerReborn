@@ -1,0 +1,67 @@
+html,
+body {
+    height: 100%;
+    margin: 0px;
+}
+
+#root {
+    height: 100%;
+}
+
+#window-head {
+    color: white;
+    background-color: black;
+    /* display: flex; */
+}
+
+#window-toolbar {
+    position: absolute;
+    right: 0px;
+}
+
+#window-body {
+    position: absolute;
+    top: 20px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    display: flex;
+}
+
+#panel {
+    width: 20%;
+    color: white;
+    background-color: gray;
+}
+
+.panel-item.selected {
+    background-color: black;
+}
+
+#container {
+    position: absolute;
+    top: 0px;
+    left: 20%;
+    right: 0px;
+    bottom: 0px;
+}
+
+.toolbar {
+    color: white;
+    background-color: grey;
+}
+
+.btn {
+    color: white;
+    background-color: black;
+    text-align: center;
+    display: inline-block;
+    transition-duration: 0.5s;
+    cursor: default;
+}
+
+.btn:hover {
+    background-color: grey;
+    color: black;
+    border: 1px;
+}

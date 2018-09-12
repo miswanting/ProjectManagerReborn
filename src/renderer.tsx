@@ -7,12 +7,12 @@ import { ipcRenderer } from "electron";
 // sematic-ui-react
 // import App from "./sematic-ui-react/App";
 // bootstrap
-import App from "./bootstrap/App";
+import App from "./custom/App";
 
+update()
 function update() {
     ReactDOM.render(
         <App />,
         document.getElementById('root')
     )
 }
-update()

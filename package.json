@@ -25,6 +25,7 @@
     "@types/react-dom": "latest",
     "awesome-typescript-loader": "latest",
     "bootstrap": "latest",
+    "css-loader": "latest",
     "electron": "latest",
     "electron-devtools-installer": "latest",
     "jquery": "latest",
@@ -32,6 +33,7 @@
     "react": "latest",
     "react-dom": "latest",
     "source-map-loader": "latest",
+    "style-loader": "latest",
     "typescript": "latest",
     "webpack": "latest",
     "webpack-cli": "latest"
