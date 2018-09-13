@@ -53,15 +53,17 @@ body {
 
 .btn {
     color: white;
-    background-color: black;
     text-align: center;
     display: inline-block;
     transition-duration: 0.5s;
     cursor: default;
+    user-select: none;
 }
 
 .btn:hover {
-    background-color: grey;
-    color: black;
-    border: 1px;
+    background-color: black;
+}
+
+table {
+    width: 100%;
 }

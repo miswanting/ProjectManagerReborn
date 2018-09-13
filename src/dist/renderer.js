@@ -98,7 +98,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/_css-loade
 
 
 // module
-exports.push([module.i, "html,\r\nbody {\r\n    height: 100%;\r\n    margin: 0px;\r\n}\r\n\r\n#root {\r\n    height: 100%;\r\n}\r\n\r\n#window-head {\r\n    color: white;\r\n    background-color: black;\r\n    /* display: flex; */\r\n}\r\n\r\n#window-toolbar {\r\n    position: absolute;\r\n    right: 0px;\r\n}\r\n\r\n#window-body {\r\n    position: absolute;\r\n    top: 20px;\r\n    left: 0px;\r\n    right: 0px;\r\n    bottom: 0px;\r\n    display: flex;\r\n}\r\n\r\n#panel {\r\n    width: 20%;\r\n    color: white;\r\n    background-color: gray;\r\n}\r\n\r\n.panel-item.selected {\r\n    background-color: black;\r\n}\r\n\r\n#container {\r\n    position: absolute;\r\n    top: 0px;\r\n    left: 20%;\r\n    right: 0px;\r\n    bottom: 0px;\r\n}\r\n\r\n.toolbar {\r\n    color: white;\r\n    background-color: grey;\r\n}\r\n\r\n.btn {\r\n    color: white;\r\n    background-color: black;\r\n    text-align: center;\r\n    display: inline-block;\r\n    transition-duration: 0.5s;\r\n    cursor: default;\r\n}\r\n\r\n.btn:hover {\r\n    background-color: grey;\r\n    color: black;\r\n    border: 1px;\r\n}", ""]);
+exports.push([module.i, "html,\r\nbody {\r\n    height: 100%;\r\n    margin: 0px;\r\n}\r\n\r\n#root {\r\n    height: 100%;\r\n}\r\n\r\n#window-head {\r\n    color: white;\r\n    background-color: black;\r\n    /* display: flex; */\r\n}\r\n\r\n#window-toolbar {\r\n    position: absolute;\r\n    right: 0px;\r\n}\r\n\r\n#window-body {\r\n    position: absolute;\r\n    top: 20px;\r\n    left: 0px;\r\n    right: 0px;\r\n    bottom: 0px;\r\n    display: flex;\r\n}\r\n\r\n#panel {\r\n    width: 20%;\r\n    color: white;\r\n    background-color: gray;\r\n}\r\n\r\n.panel-item.selected {\r\n    background-color: black;\r\n}\r\n\r\n#container {\r\n    position: absolute;\r\n    top: 0px;\r\n    left: 20%;\r\n    right: 0px;\r\n    bottom: 0px;\r\n}\r\n\r\n.toolbar {\r\n    color: white;\r\n    background-color: grey;\r\n}\r\n\r\n.btn {\r\n    color: white;\r\n    text-align: center;\r\n    display: inline-block;\r\n    transition-duration: 0.5s;\r\n    cursor: default;\r\n    user-select: none;\r\n}\r\n\r\n.btn:hover {\r\n    background-color: black;\r\n}\r\n\r\ntable {\r\n    width: 100%;\r\n}", ""]);
 
 // exports
 
@@ -21704,6 +21704,48 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(/*! react */ "./node_modules/_react@16.5.0@react/index.js");
 __webpack_require__(/*! ./style.css */ "./src/custom/style.css");
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: [
+                ['任务名称', '负责人', '开始时间', '完成时间', '工期', '当前状态', '详细信息', '备注'],
+                ['任务名称', '负责人', '开始时间', '完成时间', '工期', '当前状态', '详细信息', '备注']
+            ],
+            tableData: []
+        };
+        this.update();
+    }
+    update() {
+        var newTableData = [];
+        for (let i = 0; i < this.state.data.length; i++) {
+            const line = this.state.data[i];
+            if (i == 0) {
+                newTableData.push(line.map((value) => React.createElement("th", null, value)));
+            }
+            else {
+                newTableData.push(line.map((value) => React.createElement("td", null, value)));
+            }
+        }
+        newTableData = newTableData.map((value) => React.createElement("tr", null, value));
+        this.setState({
+            tableData: newTableData
+        });
+    }
+    handleClick(button) {
+        if (button == 'new') {
+            console.log(button);
+            var tmpData = this.state.data;
+            tmpData.push(this.state.data[this.state.data.length - 1]);
+            this.setState({ data: tmpData });
+            this.update();
+        }
+        else if (button == 'modify') {
+            console.log(button);
+        }
+        else if (button == 'delete') {
+            console.log(button);
+        }
+    }
     render() {
         return React.createElement(React.Fragment, null,
             React.createElement("div", { id: 'window-head' },
@@ -21717,9 +21759,10 @@ class App extends React.Component {
                     React.createElement("div", { className: 'panel-item selected' }, "\u4EFB\u52A1\u7BA1\u7406")),
                 React.createElement("div", { id: 'container' },
                     React.createElement("div", { className: 'toolbar' },
-                        React.createElement("span", { className: 'btn' }, "\u65B0"),
-                        React.createElement("span", { className: 'btn' }, "\u6539"),
-                        React.createElement("span", { className: 'btn' }, "\u5220")))));
+                        React.createElement("span", { className: 'btn', onClick: this.handleClick.bind(this, 'new') }, "\u65B0"),
+                        React.createElement("span", { className: 'btn', onClick: this.handleClick.bind(this, 'modify') }, "\u6539"),
+                        React.createElement("span", { className: 'btn', onClick: this.handleClick.bind(this, 'delete') }, "\u5220")),
+                    React.createElement("table", null, this.state.tableData))));
     }
 }
 exports.default = App;
