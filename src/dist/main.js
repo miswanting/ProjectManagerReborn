@@ -86,42 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/_7zip@0.0.6@7zip/index.js":
-/*!************************************************!*\
-  !*** ./node_modules/_7zip@0.0.6@7zip/index.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(__dirname) {var resolve = __webpack_require__(/*! path */ "path").resolve
-var bin = __webpack_require__(/*! ./package */ "./node_modules/_7zip@0.0.6@7zip/package.json").bin
-
-module.exports = map_obj(bin, function(v){
-  return resolve(__dirname, v)
-})
-
-function map_obj(obj, fn){
-  return Object.keys(obj).reduce(function(m, k){
-    m[k] = fn(obj[k])
-    return m
-  }, {})
-}
-
-/* WEBPACK VAR INJECTION */}.call(this, "/"))
-
-/***/ }),
-
-/***/ "./node_modules/_7zip@0.0.6@7zip/package.json":
-/*!****************************************************!*\
-  !*** ./node_modules/_7zip@0.0.6@7zip/package.json ***!
-  \****************************************************/
-/*! exports provided: name, version, description, keywords, repository, bin, main, scripts, license, _from, _resolved, default */
-/***/ (function(module) {
-
-module.exports = {"name":"7zip","version":"0.0.6","description":"7zip Windows Package via Node.js","keywords":["7z","7zip","7-zip","windows","install"],"repository":"git@github.com:fritx/win-7zip.git","bin":{"7z":"7zip-lite/7z.exe"},"main":"index.js","scripts":{"test":"mocha"},"license":"GNU LGPL","_from":"7zip@0.0.6","_resolved":"http://registry.npm.taobao.org/7zip/download/7zip-0.0.6.tgz"};
-
-/***/ }),
-
 /***/ "./node_modules/_balanced-match@1.0.0@balanced-match/index.js":
 /*!********************************************************************!*\
   !*** ./node_modules/_balanced-match@1.0.0@balanced-match/index.js ***!
@@ -449,7 +413,7 @@ module.exports = unzip
 
 // https://github.com/fritx/win-7zip
 function forWin32 (inPath, outPath, callback) {
-  var _7z = __webpack_require__(/*! 7zip */ "./node_modules/_7zip@0.0.6@7zip/index.js")['7z']
+  var _7z = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '7zip'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()))['7z']
 
   // very 奇葩
   // eg. 7z x archive.zip -oc:\Doc
