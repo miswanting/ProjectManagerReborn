@@ -18,16 +18,17 @@ export default class TaskManager extends React.Component<{ data: Array<any> }, {
             const line = this.state.data[i];
             var newLine = []
             newLine.push(<td><input type='checkbox'></input></td>)
-            for (let j = 0; j < line.length; j++) {
+            for (let j = 0; j < 8; j++) {
                 const cell = line[j];
-                newLine.push(<td key={i + ',' + j} onClick={this.handleClick.bind(this, i + ',' + j)}>{cell} </td>)
+                newLine.push(<td key={i + ',' + j} onClick={this.handleClick.bind(this, i + ',' + j)}>
+                    {cell}
+                </td>)
             }
             newTableData.push(newLine)
         }
         newTableData = newTableData.map((value: any) =>
             <tr key={value}>{value}</tr>
         )
-        newTableData.push(<tr><td></td><td><button>新增</button></td></tr>)
         this.setState({
             tableData: newTableData
         })

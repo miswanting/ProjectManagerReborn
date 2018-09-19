@@ -98,7 +98,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/_css-loade
 
 
 // module
-exports.push([module.i, "html,\r\nbody {\r\n    height: 100%;\r\n    margin: 0px;\r\n}\r\n\r\n#root {\r\n    height: 100%;\r\n}\r\n\r\n#window-head {\r\n    color: white;\r\n    background-color: black;\r\n    /* display: flex; */\r\n}\r\n\r\n#window-toolbar {\r\n    position: absolute;\r\n    right: 0px;\r\n}\r\n\r\n#window-body {\r\n    position: absolute;\r\n    top: 20px;\r\n    left: 0px;\r\n    right: 0px;\r\n    bottom: 0px;\r\n    display: flex;\r\n}\r\n\r\n#panel {\r\n    width: 20%;\r\n    color: white;\r\n    background-color: gray;\r\n}\r\n\r\n.panel-item.selected {\r\n    background-color: black;\r\n}\r\n\r\n#container {\r\n    position: absolute;\r\n    top: 0px;\r\n    left: 20%;\r\n    right: 0px;\r\n    bottom: 0px;\r\n}\r\n\r\n.toolbar {\r\n    color: white;\r\n    background-color: grey;\r\n}\r\n\r\n.btn {\r\n    color: white;\r\n    text-align: center;\r\n    display: inline-block;\r\n    transition-duration: 0.5s;\r\n    cursor: default;\r\n    user-select: none;\r\n}\r\n\r\n.btn:hover {\r\n    background-color: black;\r\n}\r\n\r\ntable {\r\n    width: 100%;\r\n}", ""]);
+exports.push([module.i, "html,\r\nbody {\r\n    height: 100%;\r\n    margin: 0px;\r\n}\r\n\r\n#root {\r\n    height: 100%;\r\n}\r\n\r\n#window-head {\r\n    color: white;\r\n    background-color: black;\r\n    /* display: flex; */\r\n}\r\n\r\n#window-toolbar {\r\n    position: absolute;\r\n    right: 0px;\r\n}\r\n\r\n#window-body {\r\n    position: absolute;\r\n    top: 20px;\r\n    left: 0px;\r\n    right: 0px;\r\n    bottom: 0px;\r\n    display: flex;\r\n}\r\n\r\n#panel {\r\n    width: 20%;\r\n    color: white;\r\n    background-color: gray;\r\n}\r\n\r\n.panel-item.selected {\r\n    background-color: black;\r\n}\r\n\r\n#container {\r\n    position: absolute;\r\n    top: 0px;\r\n    left: 20%;\r\n    right: 0px;\r\n    bottom: 0px;\r\n}\r\n\r\n.toolbar {\r\n    color: white;\r\n    background-color: grey;\r\n}\r\n\r\n.btn {\r\n    color: white;\r\n    text-align: center;\r\n    display: inline-block;\r\n    transition-duration: 0.5s;\r\n    cursor: default;\r\n    user-select: none;\r\n}\r\n\r\n.btn:hover {\r\n    background-color: black;\r\n}\r\n\r\ntable {\r\n    width: 100%;\r\n}\r\n\r\nth,\r\ntd {\r\n    border-bottom: 1px solid gray;\r\n    border-right: 1px solid gray;\r\n}", ""]);
 
 // exports
 
@@ -21703,30 +21703,65 @@ module.exports = function (css) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(/*! react */ "./node_modules/_react@16.5.0@react/index.js");
 __webpack_require__(/*! ./style.css */ "./src/custom/style.css");
+const TaskManager_1 = __webpack_require__(/*! ./TaskManager */ "./src/custom/TaskManager.tsx");
 class App extends React.Component {
+    render() {
+        return React.createElement(React.Fragment, null,
+            React.createElement("div", { id: 'window-head' },
+                React.createElement("span", { id: 'window-title' }, "\u4EBA\u751F\u7BA1\u7406\u5668"),
+                React.createElement("span", { id: 'window-toolbar' },
+                    React.createElement("span", { id: 'min-window' }, "\uFF0D"),
+                    React.createElement("span", { id: 'max-window' }, "\uFF0B"),
+                    React.createElement("span", { id: 'close-window' }, "\uFF58"))),
+            React.createElement("div", { id: 'window-body' },
+                React.createElement("div", { id: 'panel' },
+                    React.createElement("div", { className: 'panel-item selected' }, "\u4EFB\u52A1\u7BA1\u7406")),
+                React.createElement("div", { id: 'container' },
+                    React.createElement(TaskManager_1.default, { data: [[123]] }))));
+    }
+}
+exports.default = App;
+
+
+/***/ }),
+
+/***/ "./src/custom/TaskManager.tsx":
+/*!************************************!*\
+  !*** ./src/custom/TaskManager.tsx ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(/*! react */ "./node_modules/_react@16.5.0@react/index.js");
+__webpack_require__(/*! ./style.css */ "./src/custom/style.css");
+class TaskManager extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [
-                ['任务名称', '负责人', '开始时间', '完成时间', '工期', '当前状态', '详细信息', '备注'],
-                ['任务名称', '负责人', '开始时间', '完成时间', '工期', '当前状态', '详细信息', '备注']
-            ],
+            data: this.props.data,
             tableData: []
         };
+    }
+    componentDidMount() {
         this.update();
     }
     update() {
         var newTableData = [];
         for (let i = 0; i < this.state.data.length; i++) {
             const line = this.state.data[i];
-            if (i == 0) {
-                newTableData.push(line.map((value) => React.createElement("th", null, value)));
+            var newLine = [];
+            newLine.push(React.createElement("td", null,
+                React.createElement("input", { type: 'checkbox' })));
+            for (let j = 0; j < 8; j++) {
+                const cell = line[j];
+                newLine.push(React.createElement("td", { key: i + ',' + j, onClick: this.handleClick.bind(this, i + ',' + j) }, cell));
             }
-            else {
-                newTableData.push(line.map((value) => React.createElement("td", null, value)));
-            }
+            newTableData.push(newLine);
         }
-        newTableData = newTableData.map((value) => React.createElement("tr", null, value));
+        newTableData = newTableData.map((value) => React.createElement("tr", { key: value }, value));
         this.setState({
             tableData: newTableData
         });
@@ -21745,27 +21780,32 @@ class App extends React.Component {
         else if (button == 'delete') {
             console.log(button);
         }
+        else {
+            console.log(button);
+        }
     }
     render() {
         return React.createElement(React.Fragment, null,
-            React.createElement("div", { id: 'window-head' },
-                React.createElement("span", { id: 'window-title' }, "\u4EBA\u751F\u7BA1\u7406\u5668"),
-                React.createElement("span", { id: 'window-toolbar' },
-                    React.createElement("span", { id: 'min-window' }, "\uFF0D"),
-                    React.createElement("span", { id: 'max-window' }, "\uFF0B"),
-                    React.createElement("span", { id: 'close-window' }, "\uFF58"))),
-            React.createElement("div", { id: 'window-body' },
-                React.createElement("div", { id: 'panel' },
-                    React.createElement("div", { className: 'panel-item selected' }, "\u4EFB\u52A1\u7BA1\u7406")),
-                React.createElement("div", { id: 'container' },
-                    React.createElement("div", { className: 'toolbar' },
-                        React.createElement("span", { className: 'btn', onClick: this.handleClick.bind(this, 'new') }, "\u65B0"),
-                        React.createElement("span", { className: 'btn', onClick: this.handleClick.bind(this, 'modify') }, "\u6539"),
-                        React.createElement("span", { className: 'btn', onClick: this.handleClick.bind(this, 'delete') }, "\u5220")),
-                    React.createElement("table", null, this.state.tableData))));
+            React.createElement("div", { className: 'toolbar' },
+                React.createElement("span", { className: 'btn', onClick: this.handleClick.bind(this, 'new') }, "\u65B0"),
+                React.createElement("span", { className: 'btn', onClick: this.handleClick.bind(this, 'modify') }, "\u6539"),
+                React.createElement("span", { className: 'btn', onClick: this.handleClick.bind(this, 'delete') }, "\u5220")),
+            React.createElement("table", null,
+                React.createElement("thead", null,
+                    React.createElement("tr", null,
+                        React.createElement("th", null),
+                        React.createElement("th", null, "\u4EFB\u52A1\u540D\u79F0"),
+                        React.createElement("th", null, "\u8D1F\u8D23\u4EBA"),
+                        React.createElement("th", null, "\u5F00\u59CB\u65F6\u95F4"),
+                        React.createElement("th", null, "\u5B8C\u6210\u65F6\u95F4"),
+                        React.createElement("th", null, "\u5DE5\u671F"),
+                        React.createElement("th", null, "\u5F53\u524D\u72B6\u6001"),
+                        React.createElement("th", null, "\u5907\u6CE8"),
+                        React.createElement("th", null, "\u66F4\u65B0\u65F6\u95F4"))),
+                React.createElement("tbody", null, this.state.tableData)));
     }
 }
-exports.default = App;
+exports.default = TaskManager;
 
 
 /***/ }),
